@@ -1,27 +1,28 @@
 package com.example.reativo.controller;
 
 import com.example.reativo.model.ConsoleModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
-import java.time.LocalTime;
 
 @Controller
 public class SSEController {
-    public static final ConsoleModel console1 = new ConsoleModel();
+    public static String MSG_T1 = "NAO INICIADO";
+    public static String MSG_T2 = "NAO INICIADO";
 
     @GetMapping(path = "/console", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> console() {
         return Flux.interval(Duration.ofSeconds(1))
-                .map(sequence -> "THREAD 1  - " + new GerarNumeros().Thread1().getMensagem());
+                .map(sequence -> "THREAD 1  - " + MSG_T1);
     }
 
     @GetMapping(path = "/console2", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> console2() {
         return Flux.interval(Duration.ofSeconds(1))
-                .map(sequence -> "CONSOLE 2 - "  + new GerarNumeros().Thread1().getMensagem());
+                .map(sequence -> "CONSOLE 2 - "  + MSG_T2);
     }
 }
