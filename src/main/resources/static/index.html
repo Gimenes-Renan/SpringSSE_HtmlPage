@@ -13,8 +13,8 @@
 <h2>Thread 3:</h2>
 <div id="thread3"></div>
 
-<!--<h2>JSON Object:</h2>-->
-<!--<div id="jsonObject"></div>-->
+<h2>JSON Object:</h2>
+<div id="jsonObject"><table id="tabela" border='1'></table></div>
 
 <script>
 if(typeof(EventSource) !== "undefined") {
@@ -25,6 +25,7 @@ if(typeof(EventSource) !== "undefined") {
 } else {
   document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
 }
+
 </script>
 
 <script>
@@ -36,6 +37,7 @@ if(typeof(EventSource) !== "undefined") {
 } else {
   document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
 }
+
 </script>
 
 <script>
@@ -53,6 +55,22 @@ document.getElementById("thread3").innerHTML = event.data + "<br>";
 } else {
   document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
 }
+
+</script>
+
+<script>
+
+  var source = new EventSource("http://localhost:8080/console3");
+  var txt = "";
+  source.onmessage = function(event) {
+    var obj = JSON.parse(event.data);
+    for (x in obj) {
+      txt += "<tr><td>" + obj[x] + "</td></tr>";
+    }
+
+document.getElementById("tabela").innerHTML = txt;
+}
+
 </script>
 
 </body>

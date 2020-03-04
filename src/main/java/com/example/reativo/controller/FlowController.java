@@ -13,19 +13,23 @@ import static com.example.reativo.controller.SSEController.MSG_T3;
 @Service
 @EnableScheduling
 public class FlowController {
+    JSONObject jsonObject = new JSONObject();
 
     @EventListener(ApplicationReadyEvent.class)
     public void startUp() {
         executar();
     }
 
-    @Scheduled(fixedDelay = 500)
-    public void eventoJson(){
-        System.out.println("Criando JSON");
-        JSONObject jsonObject = new JSONObject();
+    @Scheduled(fixedDelay = 1)
+    public void eventoJson() {
         jsonObject.put("nome", "Renan");
         jsonObject.put("sobrenome", "Musardo");
         MSG_T3 = jsonObject.toJSONString();
+        espera(1000);
+        jsonObject.put("nome", "Juliana");
+        jsonObject.put("sobrenome", "Gimenes");
+        MSG_T3 = jsonObject.toJSONString();
+        espera(1000);
     }
 
     private void executar() {
@@ -42,7 +46,7 @@ public class FlowController {
         }
     }
 
-    private void espera(int ms){
+    private void espera(int ms) {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
