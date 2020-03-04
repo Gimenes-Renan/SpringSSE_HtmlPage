@@ -1,20 +1,31 @@
 package com.example.reativo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.json.simple.JSONObject;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-import org.springframework.stereotype.Controller;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import static com.example.reativo.controller.SSEController.MSG_T1;
-import static com.example.reativo.controller.SSEController.MSG_T2;
+import static com.example.reativo.controller.SSEController.MSG_T3;
 
 @Service
+@EnableScheduling
 public class FlowController {
 
     @EventListener(ApplicationReadyEvent.class)
     public void startUp() {
         executar();
+    }
+
+    @Scheduled(fixedDelay = 500)
+    public void eventoJson(){
+        System.out.println("Criando JSON");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("nome", "Renan");
+        jsonObject.put("sobrenome", "Musardo");
+        MSG_T3 = jsonObject.toJSONString();
     }
 
     private void executar() {

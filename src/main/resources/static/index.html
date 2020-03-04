@@ -10,6 +10,12 @@
 <h2>Thread 2:</h2>
 <div id="thread2"></div>
 
+<h2>Thread 3:</h2>
+<div id="thread3"></div>
+
+<!--<h2>JSON Object:</h2>-->
+<!--<div id="jsonObject"></div>-->
+
 <script>
 if(typeof(EventSource) !== "undefined") {
   var source = new EventSource("http://localhost:8080/console");
@@ -26,6 +32,23 @@ if(typeof(EventSource) !== "undefined") {
   var source = new EventSource("http://localhost:8080/console2");
   source.onmessage = function(event) {
     document.getElementById("thread2").innerHTML = event.data + "<br>";
+  };
+} else {
+  document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
+}
+</script>
+
+<script>
+    if(typeof(EventSource) !== "undefined") {
+  var source = new EventSource("http://localhost:8080/console3");
+  source.onmessage = function(event) {
+<!--    obj = JSON.parse(event.data);-->
+<!--    txt += "<table border='1'>"-->
+<!--    for (x in obj) {-->
+<!--      txt += "<tr><td>" + obj[x] + "</td></tr>";-->
+<!--    }-->
+<!--    txt += "</table>"-->
+document.getElementById("thread3").innerHTML = event.data + "<br>";
   };
 } else {
   document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
