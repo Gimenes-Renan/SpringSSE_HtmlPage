@@ -1,10 +1,9 @@
-var obj, x, txt = "";
-obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
-
-txt += "<table border='1'>"
-for (x in obj) {
-  txt += "<tr><td>" + obj[x] + "</td></tr>";
+let source = new EventSource("http://localhost:8080/console3");
+source.onmessage = function (event) {
+  let txt = "";
+  let obj = JSON.parse(event.data);
+  for (let x in obj) {
+    txt += "<tr><td>" + x + "</td><td>" + obj[x] + "</td></tr>";
+  }
+  document.getElementById("tabela").innerHTML = txt;
 }
-txt += "</table>"
-document.getElementById("demo").innerHTML = txt;
-  

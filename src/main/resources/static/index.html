@@ -18,53 +18,10 @@
     <table id="tabela" border='1'></table>
 </div>
 
-<script>
-    if (typeof (EventSource) !== "undefined") {
-        let source = new EventSource("http://localhost:8080/console");
-        source.onmessage = function (event) {
-            document.getElementById("thread1").innerHTML = event.data + "<br>";
-        };
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
-    }
-
-</script>
-
-<script>
-    if (typeof (EventSource) !== "undefined") {
-        let source = new EventSource("http://localhost:8080/console2");
-        source.onmessage = function (event) {
-            document.getElementById("thread2").innerHTML = event.data + "<br>";
-        };
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
-    }
-
-</script>
-
-<script>
-    if (typeof (EventSource) !== "undefined") {
-        let source = new EventSource("http://localhost:8080/console3");
-        source.onmessage = function (event) {
-            document.getElementById("thread3").innerHTML = event.data + "<br>";
-        };
-    } else {
-        document.getElementById("result").innerHTML = "Sorry, your browser does not support server-sent events...";
-    }
-
-</script>
-
-<script>
-    let source = new EventSource("http://localhost:8080/console3");
-    source.onmessage = function (event) {
-        let txt = "";
-        let obj = JSON.parse(event.data);
-        for (let x in obj) {
-            txt += "<tr><td>" + x + "</td><td>" + obj[x] + "</td></tr>";
-        }
-        document.getElementById("tabela").innerHTML = txt;
-    }
-</script>
+<script src="console1.js"></script>
+<script src="console2.js"></script>
+<script src="console3.js"></script>
+<script src="json.js"></script>
 
 </body>
 </html>
