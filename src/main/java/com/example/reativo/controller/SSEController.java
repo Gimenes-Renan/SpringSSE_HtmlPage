@@ -1,7 +1,5 @@
 package com.example.reativo.controller;
 
-import com.example.reativo.model.ConsoleModel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,5 +22,10 @@ public class SSEController {
     public Flux<String> console2() {
         return Flux.interval(Duration.ofSeconds(1))
                 .map(sequence -> "CONSOLE 2 - "  + MSG_T2);
+    }
+
+    @GetMapping("/json")
+    public String jsonTeste(){
+        return "json";
     }
 }
