@@ -41,6 +41,7 @@ public class FlowController {
 
     private void executar() {
         System.out.println("Iniciou FlowController - Executar");
+        abrirNavegador();
         while (true) {
             MSG_T1 = "Execucao Iniciada";
             espera(2000);
@@ -50,6 +51,19 @@ public class FlowController {
             espera(2000);
             MSG_T1 = "Buscando novos casos";
             espera(2000);
+        }
+    }
+
+    private void abrirNavegador() {
+        System.out.println("ABRINDO NAVEGADOR");
+        String browserPath = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe";
+        String url = "http://localhost:8080/";
+        try {
+            String[] b = {browserPath, url};
+            Runtime.getRuntime().exec(b);
+        } catch (Exception exc) {
+            exc.printStackTrace();
+            System.out.println("IMPOSSIVEL ABRIR O NAVEGADOR");
         }
     }
 
