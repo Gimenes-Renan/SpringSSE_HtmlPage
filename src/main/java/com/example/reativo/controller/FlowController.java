@@ -40,18 +40,11 @@ public class FlowController {
     }
 
     private void executar() {
-        System.out.println("Iniciou FlowController - Executar");
         abrirNavegador();
-        while (true) {
-            MSG_T1 = "Execucao Iniciada";
-            espera(2000);
-            MSG_T1 = "Execucao Em andamento";
-            espera(5000);
-            MSG_T1 = "Execucao Finalizada";
-            espera(2000);
-            MSG_T1 = "Buscando novos casos";
-            espera(2000);
-        }
+        System.out.println("Abrindo serviço de Mensagens");
+        MensagensController msg1 = new MensagensController();
+        msg1.start();
+        System.out.println("Serviço de Mensagens inicializado");
     }
 
     private void abrirNavegador() {

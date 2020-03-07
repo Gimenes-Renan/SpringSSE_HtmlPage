@@ -1,10 +1,8 @@
 package com.example.reativo.controller;
 
 import com.example.reativo.model.ConsoleModel;
-import com.example.reativo.model.LoginModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -43,10 +41,14 @@ public class SSEController {
         return "json";
     }
 
+    @GetMapping("/forms")
+    public String formJQuery() {
+        return "forms";
+    }
 
     @PostMapping("/mensagem")
-    public ResponseEntity mensagem(@RequestParam Map<String, String> allParams) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public void mensagem(@RequestParam Map<String, String> allParams) {
         allParams.forEach((k, v) -> System.out.println("Chave: " + k + " | Valor: " + v));
-        return new ResponseEntity(HttpStatus.OK);
     }
 }

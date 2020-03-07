@@ -18,15 +18,15 @@
     <table id="tabela" border='1'></table>
 </div>
 
-<h1>The form method="post" attribute</h1>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#includedContent").load("forms");
+    });
+</script>
 
-<form action="/mensagem" method="post" target="_blank">
-    <label for="fname">First name:</label>
-    <input type="text" id="fname" name="fname"><br><br>
-    <label for="lname">Last name:</label>
-    <input type="text" id="lname" name="lname"><br><br>
-    <input type="submit" value="Submit">
-</form>
+<h2>Pagina incluida abaixo</h2>
+<div id="includedContent"></div>
 
 <script src="console1.js"></script>
 <script src="console2.js"></script>
