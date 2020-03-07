@@ -7,8 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import static com.example.reativo.controller.SSEController.MSG_T1;
-import static com.example.reativo.controller.SSEController.MSG_T3;
+import static com.example.reativo.controller.SSEController.*;
 
 @Service
 @EnableScheduling
@@ -30,6 +29,14 @@ public class FlowController {
         jsonObject.put("sobrenome", "Gimenes");
         MSG_T3 = jsonObject.toJSONString();
         espera(1000);
+    }
+
+    @Scheduled(fixedDelay = 1)
+    public void eventoObj() {
+        consoleModel.setMensagem("Renan");
+        espera(200);
+        consoleModel.setMensagem("Musardo");
+        espera(200);
     }
 
     private void executar() {
