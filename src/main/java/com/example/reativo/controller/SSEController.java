@@ -1,11 +1,16 @@
 package com.example.reativo.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import reactor.core.publisher.Flux;
 
 import java.time.Duration;
+import java.util.Map;
 
 @Controller
 public class SSEController {
@@ -22,7 +27,7 @@ public class SSEController {
     @GetMapping(path = "/console2", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> console2() {
         return Flux.interval(Duration.ofSeconds(1))
-                .map(sequence -> "CONSOLE 2 - "  + MSG_T2);
+                .map(sequence -> "CONSOLE 2 - " + MSG_T2);
     }
 
     @GetMapping(path = "/console3", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -32,7 +37,13 @@ public class SSEController {
     }
 
     @GetMapping("/json")
-    public String jsonTeste(){
+    public String jsonTeste() {
         return "json";
+    }
+
+    @PostMapping("/buttonControl")
+    @ResponseStatus(HttpStatus.OK)
+    public void buttonControl(@RequestParam Map<String, String> parametros) {
+        parametros.forEach((k, v) -> System.out.println("KEY:[" + k + "] VALUE: [" + v + "]"));
     }
 }
