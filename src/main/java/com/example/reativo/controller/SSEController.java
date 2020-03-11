@@ -15,6 +15,7 @@ public class SSEController {
     public static String MSG_T1 = "NAO INICIADO";
     public static String MSG_T2 = "NAO INICIADO";
     public static String MSG_T3 = "{'chave':'valor'}";
+    public static boolean executando = false;
 
     public static ConsoleModel consoleModel = new ConsoleModel();
 
@@ -50,5 +51,11 @@ public class SSEController {
     @ResponseStatus(value = HttpStatus.OK)
     public void mensagem(@RequestParam Map<String, String> allParams) {
         allParams.forEach((k, v) -> System.out.println("Chave: " + k + " | Valor: " + v));
+        String nome = allParams.get("status");
+        if (nome.equals("true")) {
+            executando = true;
+        } else {
+            executando = false;
+        }
     }
 }

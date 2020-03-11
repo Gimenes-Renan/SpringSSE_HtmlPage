@@ -18,11 +18,49 @@
     <table id="tabela" border='1'></table>
 </div>
 
+<input id="toggle-event" type="checkbox" data-toggle="toggle">
+<input id="botao1" type="button" value="eitaPorra">
+
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<!-- CARREGA A PAGINA HTML 'FORMS' -->
 <script>
     $(function () {
         $("#includedContent").load("forms");
     });
+</script>
+
+<!-- EVENTO AO CLICAR O BOTAO (TOGGLE) -->
+<script>
+    $(function () {
+        $('#toggle-event').change(function () {
+            var valor = $(this).prop('checked');
+            $.ajax({
+                type: 'POST',
+                url: 'mensagem',
+                data: {
+                    'status': valor
+                }
+            });
+        })
+    })
+</script>
+
+<!-- EVENTO AO CLICAR O BOTAO (VALUE) -->
+<script>
+    $(function () {
+        $('#botao1').click(function () {
+            // var valor = $(this).prop('checked')
+            var valor = $(this).val();
+            $.ajax({
+                type: 'POST',
+                url: 'mensagem',
+                data: {
+                    'status': valor
+                }
+            });
+        })
+    })
 </script>
 
 <h2>Pagina incluida abaixo</h2>
