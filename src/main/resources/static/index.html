@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-</head>
+<html>
 <body>
 
 <h1>Dados de Acesso:</h1>
@@ -21,11 +18,15 @@
     <table id="tabela" border='1'></table>
 </div>
 
-<div id="botoes">
-    <form id="form1">
-        <input type="submit" name="EditView" value="Edit(Post)" formaction="buttonControl" formmethod="post"/>
-    </form>
-</div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("#includedContent").load("forms");
+    });
+</script>
+
+<h2>Pagina incluida abaixo</h2>
+<div id="includedContent"></div>
 
 <script src="console1.js"></script>
 <script src="console2.js"></script>
